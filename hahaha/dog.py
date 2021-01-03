@@ -1,4 +1,4 @@
-from hahaha.util import *
+from hahaha.process import *
 
 
 def _dog(src: str, my_thing: str, dog_action: str, dog_word: str):

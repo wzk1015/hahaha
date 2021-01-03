@@ -1,21 +1,16 @@
 import numpy as np
 import cv2
-from PIL import Image, ImageDraw, ImageFont
+
 import os
 import pkg_resources
 
-FONT_PATH = "font/方正兰亭中黑简体.TTF"
+
 PACKAGE_NAME = "hahaha"
 template_path = "template-imgs/"
 
 
-def add_text(img, text, left, top, color=(0, 0, 0), size=20):
-    if isinstance(img, np.ndarray):  #判断是否OpenCV图片类型
-        img = Image.fromarray(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
-    draw = ImageDraw.Draw(img)
-    font_text = ImageFont.truetype(FONT_PATH, size, encoding="utf-8")
-    draw.text((left, top), text, color, font=font_text)
-    return cv2.cvtColor(np.asarray(img), cv2.COLOR_RGB2BGR)
+def get_path(path):
+    return pkg_resources.resource_filename(PACKAGE_NAME, path)
 
 
 def check_file(path):
@@ -23,7 +18,7 @@ def check_file(path):
 
 
 def read(path) -> np.ndarray:
-    p = pkg_resources.resource_filename(PACKAGE_NAME, path)
+    p = get_path(path)
     check_file(p)
     return cv2.imread(p)
 
